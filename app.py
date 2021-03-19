@@ -1,6 +1,56 @@
 '''
     BIOT670 Capstone Project - Quad Viewer
     plotting functions
+    nkim
+    
+    To set virtualenv to configure app.py (Dash application) to any setting 
+    To add Files to the Development Folder by adding following files
+        app1.py	a Dash application
+        .gitignore	used by git, identifies files that won’t be pushed to production
+        Procfile	used for deployment
+        requirements.txt	describes your Python dependencies, can be created automatically     
+'''
+
+import dash
+import dash_auth
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+
+USERNAME_PASSWORD_PAIRS = [
+    ['JamesBond', '007'],['LouisArmstrong', 'satchmo']
+]
+
+app = dash.Dash()
+auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
+server = app.server
+
+app.layout = html.Div([
+    dcc.RangeSlider(
+        id='range-slider',
+        min=-5,
+        max=6,
+        marks={i:str(i) for i in range(-5, 7)},
+        value=[-3, 4]
+    ),
+    html.H1(id='product')  # this is the output
+], style={'width':'50%'})
+
+@app.callback(
+    Output('product', 'children'),
+    [Input('range-slider', 'value')])
+def update_value(value_list):
+    return value_list[0]*value_list[1]
+
+if __name__ == '__main__':
+    app.run_server()
+
+    
+    
+
+'''
+    BIOT670 Capstone Project - Quad Viewer
+    plotting functions
 '''
 import json
 import os
@@ -15,6 +65,8 @@ from dash.dependencies import Input, Output, State
 from uiutils import update_dropdowns, serve_layout
 from plotutils import generate_plot
 import numpy as np
+
+
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
