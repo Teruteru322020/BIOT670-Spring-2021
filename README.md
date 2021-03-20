@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/58052327/111859298-4253b500-8916-11eb-8ed4-55298c788e3f.png" width="200" height="100" alt="Computer Hope">
+<img src="https://user-images.githubusercontent.com/58052327/111859380-e4739d00-8916-11eb-8628-4aa8ae9ac950.png" width="200" height="100" alt="Computer Hope">
 
 # BIOT670-Spring-2021
 BIOT670 Capstone project for Group 2 Spring 2021
